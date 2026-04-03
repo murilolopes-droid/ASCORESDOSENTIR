@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As Cores do Sentir | Projeto Quasar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#e0c3fc',
+                            DEFAULT: '#8ec5fc',
+                            dark: '#4facfe',
+                            accent: '#ff0844'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31102f 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(to right, #8ec5fc, #e0c3fc);
+            border-radius: 50%;
+            position: absolute;
+            left: -8px;
+            top: 6px;
+            box-shadow: 0 0 10px rgba(142, 197, 252, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-brand selection:text-white">
+
+    <!-- Header / Hero Section -->
+    <header class="relative overflow-hidden py-24 sm:py-32">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+            <span class="text-brand-light font-semibold tracking-wider uppercase text-sm mb-4 block">O Universo de Projeto Quasar</span>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-brand-light via-brand to-pink-300">
+                As Cores do Sentir
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                Uma jornada animada através das emoções, construída com paixão, colaboração e muita dedicação.
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-5xl mx-auto px-6 pb-24 w-full grid grid-cols-1 md:grid-cols-12 gap-12">
+        
+        <!-- Left Column: Chronology & Story -->
+        <div class="md:col-span-7 space-y-12">
+            
+            <section>
+                <div class="flex items-center gap-3 mb-8 border-b border-white/10 pb-4">
+                    <i data-lucide="clock" class="text-brand w-6 h-6"></i>
+                    <h2 class="text-3xl font-serif font-semibold">Nossa História</h2>
+                </div>
+                
+                <div class="relative border-l-2 border-white/10 ml-3 pl-8 py-2 space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-brand-light font-bold text-sm uppercase tracking-wider">Outubro de 2025</span>
+                        <h3 class="text-xl font-semibold mt-1 mb-2 text-white">O Início de Tudo</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            O embrião do <strong>Projeto Quasar</strong> ganhou vida. Foi neste mês que escrevi o primeiro roteiro, dando forma às ideias e sentimentos que dariam origem a "As Cores do Sentir". O que era apenas um pensamento no papel começou a se transformar em um universo tangível.
+                        </p>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-brand-light font-bold text-sm uppercase tracking-wider">Desenvolvimento & Colaboração</span>
+                        <h3 class="text-xl font-semibold mt-1 mb-2 text-white">Ganhando Vida e Voz</h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            A jornada continuou com o aprofundamento da história. A narrativa foi tomando contornos mais profundos e emocionantes graças à construção conjunta e ao apoio incondicional de pessoas incríveis que acreditaram no potencial deste sonho.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Personagens Section Link -->
+            <section class="pt-4">
+                <a href="personagens.html" class="glass-card p-6 rounded-2xl flex items-center justify-between hover:bg-white/10 transition duration-300 group border-brand/30 bg-brand/5 shadow-lg shadow-brand/5">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-brand-light/20 p-3 rounded-lg text-brand-light group-hover:scale-110 transition duration-300">
+                            <i data-lucide="users"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Conheça os Personagens</h3>
+                            <p class="text-slate-400 text-sm mt-1">Descubra as emoções e os rostos que dão vida a esta história.</p>
+                        </div>
+                    </div>
+                    <i data-lucide="arrow-right" class="text-brand-light group-hover:translate-x-1 transition duration-300"></i>
+                </a>
+            </section>
+
+            <!-- Links Section -->
+            <section class="pt-8">
+                <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                    <i data-lucide="folder-heart" class="text-pink-400 w-6 h-6"></i>
+                    <h2 class="text-3xl font-serif font-semibold">Acervo da Obra</h2>
+                </div>
+                <p class="text-slate-300 mb-6">Acesse os materiais originais que compõem a fundação e a execução visual deste projeto.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Roteiro -->
+                    <a href="./roteiro.pdf" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
+                        <div class="bg-red-500/20 p-3 rounded-lg text-red-400 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="file-text"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white">Roteiro Original</h3>
+                            <span class="text-sm text-slate-400">roteiro.pdf</span>
+                        </div>
+                    </a>
+
+                    <!-- Storyboard 1 -->
+                    <a href="./filme1.mp4" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
+                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="film"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white">Storyboard - Filme 1</h3>
+                            <span class="text-sm text-slate-400">filme1.mp4</span>
+                        </div>
+                    </a>
+
+                    <!-- Storyboard 2 -->
+                    <a href="./filme2.mp4" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
+                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="film"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white">Storyboard - Filme 2</h3>
+                            <span class="text-sm text-slate-400">filme2.mp4</span>
+                        </div>
+                    </a>
+
+                    <!-- Storyboard 3 -->
+                    <a href="./filme3.mp4" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
+                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="film"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white">Storyboard - Filme 3</h3>
+                            <span class="text-sm text-slate-400">filme3.mp4</span>
+                        </div>
+                    </a>
+
+                    <!-- Storyboard 4 -->
+                    <a href="./filme4.mp4" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
+                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="film"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-white">Storyboard - Filme 4</h3>
+                            <span class="text-sm text-slate-400">filme4.mp4</span>
+                        </div>
+                    </a>
+
+                    <!-- Ato 1 Completo -->
+                    <a href="./ato1.mp4" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group border-brand/30 bg-brand/5">
+                        <div class="bg-brand/20 p-3 rounded-lg text-brand-light group-hover:scale-110 transition duration-300">
+                            <i data-lucide="play-circle"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-brand-light">Ato 1 (Animado)</h3>
+                            <span class="text-sm text-slate-400">ato1.mp4</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column: Credits & Special Thanks -->
+        <div class="md:col-span-5 space-y-6">
+            
+            <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                <i data-lucide="heart-handshake" class="text-rose-400 w-6 h-6"></i>
+                <h2 class="text-3xl font-serif font-semibold">Gratidão</h2>
+            </div>
+
+            <!-- Eduardo Special Card -->
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden group border-amber-500/30">
+                <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="star" class="text-amber-400 w-5 h-5 fill-amber-400"></i>
+                        <h3 class="text-lg font-bold text-amber-100">Agradecimento Especial</h3>
+                    </div>
+                    <p class="text-white font-serif text-xl mb-2">Eduardo</p>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Meu MUITO OBRIGADO ao Eduardo, que me ajudou de forma imensurável e continua me orientando magistralmente em toda a parte de animação. Este projeto brilha mais forte graças a você!
+                    </p>
+                </div>
+            </div>
+
+            <!-- General Credits -->
+            <div class="glass-card rounded-2xl p-6 space-y-6">
+                
+                <div>
+                    <h3 class="text-brand-light font-semibold mb-1 text-sm uppercase tracking-wider">Voz e Emoção</h3>
+                    <p class="text-lg font-medium">Luana Nunes</p>
+                    <p class="text-sm text-slate-400">Dublagem brilhante que deu alma aos personagens.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-brand-light font-semibold mb-1 text-sm uppercase tracking-wider">Apoio Psicológico</h3>
+                    <p class="text-lg font-medium">Ivana Rebello</p>
+                    <p class="text-sm text-slate-400">Por todo o suporte na estruturação psicológica da obra.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-brand-light font-semibold mb-1 text-sm uppercase tracking-wider">Mentoria</h3>
+                    <p class="text-lg font-medium">Cláudia Aguiar</p>
+                    <p class="text-sm text-slate-400">Pelos direcionamentos e sabedoria em cada passo.</p>
+                </div>
+
+                <div class="pt-4 border-t border-white/10">
+                    <h3 class="text-brand-light font-semibold mb-3 text-sm uppercase tracking-wider">Base Afetiva</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Um projeto feito sobre sentimentos não existiria sem quem os nutre em mim. Todo o meu amor e gratidão à minha <strong>mãe</strong>, meu <strong>pai</strong>, minha <strong>psicóloga</strong>, meus <strong>irmãos</strong> e meus <strong>amigos</strong>. Vocês são meu porto seguro.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm mt-auto">
+        <p>© 2026 As Cores do Sentir - Projeto Quasar. Criado com emoção e código.</p>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
