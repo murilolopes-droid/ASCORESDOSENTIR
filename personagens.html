@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As Cores do Sentir - Personagens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fef9c3; /* Amarelo clarinho de fundo */
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Fredoka One', cursive;
+        }
+        .character-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .character-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .drawer {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        .drawer.open {
+            transform: translateX(0);
+        }
+        .overlay {
+            display: none;
+            background: rgba(0,0,0,0.4);
+        }
+        .overlay.active {
+            display: block;
+        }
+        /* Cores personalizadas baseadas no roteiro */
+        .bg-camila { background-color: #fde68a; border-color: #f59e0b; }
+        .bg-joao { background-color: #bfdbfe; border-color: #3b82f6; }
+        .bg-marcos { background-color: #fecaca; border-color: #ef4444; }
+        .bg-sofia { background-color: #fbcfe8; border-color: #ec4899; }
+        .bg-bruno { background-color: #bbf7d0; border-color: #22c55e; }
+        .bg-cris { background-color: #ddd6fe; border-color: #8b5cf6; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-red-500 text-white py-4 shadow-md text-center">
+        <h1 class="text-2xl md:text-3xl uppercase tracking-wider">As Cores do Sentir - O Filme</h1>
+    </header>
+
+    <main class="flex-grow p-6 md:p-12 max-w-6xl mx-auto w-full">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl text-gray-800 mb-2">Conheça os amigos da Cidade Primaveril!</h2>
+            <p class="text-lg text-gray-600">Clique em um personagem para descobrir seus segredos!</p>
+        </div>
+
+        <!-- Grid de Personagens -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Camila -->
+            <div onclick="openDrawer('camila')" class="character-card bg-camila border-4 p-6 rounded-3xl flex items-center gap-4">
+                <img src="./camila.png" alt="Camila" class="w-24 h-24 object-contain">
+                <div>
+                    <h3 class="text-2xl text-amber-900">Camila</h3>
+                    <p class="font-bold text-amber-700">Alegria</p>
+                    <p class="text-sm">Sempre acorda com um sorrisão!</p>
+                </div>
+            </div>
+
+            <!-- João -->
+            <div onclick="openDrawer('joao')" class="character-card bg-joao border-4 p-6 rounded-3xl flex items-center gap-4">
+                <img src="Cabeça_do_joão-removebg-preview.png" alt="João" class="w-24 h-24 object-contain">
+                <div>
+                    <h3 class="text-2xl text-blue-900">João</h3>
+                    <p class="font-bold text-blue-700">Superação</p>
+                    <p class="text-sm">Aprendendo a lidar com as mudanças.</p>
+                </div>
+            </div>
+
+            <!-- Marcos -->
+            <div onclick="openDrawer('marcos')" class="character-card bg-marcos border-4 p-6 rounded-3xl flex items-center gap-4">
+                <img src="Marcos_de_boca_calada-removebg-preview.png" alt="Marcos" class="w-24 h-24 object-contain">
+                <div>
+                    <h3 class="text-2xl text-red-900">Marcos</h3>
+                    <p class="font-bold text-red-700">Intensidade</p>
+                    <p class="text-sm">Um pouco esquentadinho, mas fiel.</p>
+                </div>
+            </div>
+
+            <!-- Sofia -->
+            <div onclick="openDrawer('sofia')" class="character-card bg-sofia border-4 p-6 rounded-3xl flex items-center gap-4">
+                <img src="Sofia__com_medo-removebg-preview.png" alt="Sofia" class="w-24 h-24 object-contain">
+                <div>
+                    <h3 class="text-2xl text-pink-900">Sofia</h3>
+                    <p class="font-bold text-pink-700">Coragem</p>
+                    <p class="text-sm">Enfrentando medos com os amigos.</p>
+                </div>
+            </div>
+
+            <!-- Bruno -->
+            <div onclick="openDrawer('bruno')" class="character-card bg-bruno border-4 p-6 rounded-3xl flex items-center gap-4">
+                <img src="Cabeça_do_Bruno-removebg-preview.png" alt="Bruno" class="w-24 h-24 object-contain">
+                <div>
+                    <h3 class="text-2xl text-green-900">Bruno</h3>
+                    <p class="font-bold text-green-700">Crescimento</p>
+                    <p class="text-sm">O aluno dedicado que busca o melhor.</p>
+                </div>
+            </div>
+
+            <!-- Cris -->
+            <div onclick="openDrawer('cris')" class="character-card bg-cris border-4 p-6 rounded-3xl flex items-center gap-4">
+                <img src="cris_imaginando-removebg-preview.png" alt="Cris" class="w-24 h-24 object-contain">
+                <div>
+                    <h3 class="text-2xl text-purple-900">Cris</h3>
+                    <p class="font-bold text-purple-700">Inteligência</p>
+                    <p class="text-sm">Sempre curiosa e muito esperta!</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-red-500 text-white py-4 text-center mt-12">
+        <p class="text-sm uppercase tracking-widest">Um filme de Murilo Lopes com mentoria de Cláudia Aguiar</p>
+    </footer>
+
+    <!-- Overlay & Drawer -->
+    <div id="overlay" class="overlay fixed inset-0 z-40" onclick="closeDrawer()"></div>
+    
+    <div id="drawer" class="drawer fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 shadow-2xl p-8 overflow-y-auto">
+        <button onclick="closeDrawer()" class="absolute top-4 right-4 text-2xl font-bold text-gray-500 hover:text-gray-800">FECHAR &times;</button>
+        
+        <div id="drawer-content" class="mt-8">
+            <!-- Conteúdo dinâmico aqui -->
+        </div>
+    </div>
+
+    <script>
+        const characters = {
+            camila: {
+                title: "Tudo sobre Camila!",
+                img: "./camila.png",
+                color: "border-amber-500",
+                about: "Camila é muito alegre, animada e feliz. Ela tem 7 anos e acorda todo dia com um sorriso pronto para viver experiências incríveis!",
+                curiosities: [
+                    "Abraça seus pais antes de ir para a escola.",
+                    "Adora ovos mexidos no café da manhã.",
+                    "Sempre tenta animar seus amigos quando estão tristes.",
+                    "Teve a ideia super legal de formar uma banda!"
+                ],
+                quote: "Bom dia, mundo!"
+            },
+            joao: {
+                title: "Tudo sobre João!",
+                img: "Cabeça_do_joão-removebg-preview.png",
+                color: "border-blue-500",
+                about: "João estava passando por uma mudança difícil e se sentia triste por ter que deixar os amigos. Mas ele descobriu que a amizade é mais forte que a distância!",
+                curiosities: [
+                    "Estava muito ansioso com a mudança de casa.",
+                    "Descobriu que sua nova casa era pertinho da antiga!",
+                    "É um grande companheiro de aventuras."
+                ],
+                quote: "Eu não sabia para onde ia me mudar... espero que não estejam chateados."
+            },
+            marcos: {
+                title: "Tudo sobre Marcos!",
+                img: "Marcos_de_boca_calada-removebg-preview.png",
+                color: "border-red-500",
+                about: "Marcos é o amigo mais explosivo do grupo. Ele fica bravo com facilidade, especialmente quando sente que as coisas não estão certas, mas tem um coração enorme.",
+                curiosities: [
+                    "Bate o pé quando está revoltado.",
+                    "Não gosta de mentiras.",
+                    "Aprendeu a respirar fundo para se acalmar."
+                ],
+                quote: "Ele mentiu pra gente?!"
+            },
+            sofia: {
+                title: "Tudo sobre Sofia!",
+                img: "Sofia__com_medo-removebg-preview.png",
+                color: "border-pink-500",
+                about: "Sofia é sensível e muitas vezes sente medo do desconhecido. Ela representa a cautela, mas mostra que com apoio pode ser muito corajosa.",
+                curiosities: [
+                    "Fica assustada com novidades repentinas.",
+                    "Adora a segurança da Cidade Primaveril.",
+                    "É a primeira a notar quando algo está estranho."
+                ],
+                quote: "Eu estou com um pouquinho de medo..."
+            },
+            bruno: {
+                title: "Tudo sobre Bruno!",
+                img: "Cabeça_do_Bruno-removebg-preview.png",
+                color: "border-green-500",
+                about: "Bruno se considera o 'aluno perfeito'. Ele é centrado, busca sempre manter a calma e ajudar os amigos a pensarem antes de agir.",
+                curiosities: [
+                    "É muito educado e estudioso.",
+                    "Ajuda o Marcos a manter a calma.",
+                    "Entende tudo sobre as emoções."
+                ],
+                quote: "Calma, respira, respira, Marcos."
+            },
+            cris: {
+                title: "Tudo sobre Cris!",
+                img: "cris_imaginando-removebg-preview.png",
+                color: "border-purple-500",
+                about: "Cris é a inteligência do grupo. Muito curiosa, ela está sempre imaginando soluções e aprendendo coisas novas sobre o mundo e as pessoas.",
+                curiosities: [
+                    "Adora observar tudo ao seu redor.",
+                    "Sempre tem uma pergunta interessante.",
+                    "É muito animada para aprender."
+                ],
+                quote: "Isso é otimamente es-pe-ta-cu-lar!"
+            }
+        };
+
+        function openDrawer(id) {
+            const char = characters[id];
+            const content = document.getElementById('drawer-content');
+            
+            content.innerHTML = `
+                <div class="text-center">
+                    <h2 class="text-3xl text-gray-800 mb-6">${char.title}</h2>
+                    <img src="${char.img}" alt="${id}" class="w-48 h-48 mx-auto object-contain mb-6 border-8 ${char.color} rounded-full p-2">
+                </div>
+                <div class="space-y-6 text-gray-700">
+                    <div>
+                        <strong class="text-lg block mb-1">**Sobre Mim:**</strong>
+                        <p class="leading-relaxed">${char.about}</p>
+                    </div>
+                    <div>
+                        <strong class="text-lg block mb-1">**Curiosidades do Roteiro:**</strong>
+                        <ul class="list-disc pl-5 space-y-1">
+                            ${char.curiosities.map(c => `<li>${c}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-xl italic border-l-4 border-gray-400">
+                        <strong class="not-italic block mb-1">**Frase Marcante:**</strong>
+                        "${char.quote}"
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('drawer').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
