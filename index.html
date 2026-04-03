@@ -48,6 +48,13 @@
             top: 6px;
             box-shadow: 0 0 10px rgba(142, 197, 252, 0.5);
         }
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s infinite ease-in-out;
+        }
     </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col font-sans selection:bg-brand selection:text-white">
@@ -179,16 +186,29 @@
                         </div>
                     </a>
 
-                    <!-- Ato 1 Completo -->
-                    <a href="./ato1.mp4" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group border-brand/30 bg-brand/5">
-                        <div class="bg-brand/20 p-3 rounded-lg text-brand-light group-hover:scale-110 transition duration-300">
-                            <i data-lucide="play-circle"></i>
+                    <!-- Ato 1 Completo (YouTube) -->
+                    <a href="https://youtu.be/t_50OF05WCE?si=ZZmHw-35lQMt4D18" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group border-brand/40 bg-brand/10 shadow-lg shadow-brand/5">
+                        <div class="bg-red-600/20 p-3 rounded-lg text-red-500 group-hover:scale-110 transition duration-300">
+                            <i data-lucide="youtube"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-brand-light">Ato 1 (Animado)</h3>
-                            <span class="text-sm text-slate-400">ato1.mp4</span>
+                            <h3 class="font-semibold text-brand-light">Assista ao Ato 1</h3>
+                            <span class="text-sm text-slate-400">Ver no YouTube</span>
                         </div>
                     </a>
+                </div>
+
+                <!-- Aviso Breve Lançamento -->
+                <div class="mt-8 p-6 glass-card rounded-2xl border-brand-light/20 flex flex-col items-center text-center space-y-3 animate-pulse-soft">
+                    <div class="bg-brand-light/10 p-2 rounded-full">
+                        <i data-lucide="sparkles" class="text-brand-light w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-white uppercase tracking-widest text-sm">Aguarde!</h4>
+                        <p class="text-slate-300 text-sm mt-1">
+                            Em breve, o filme inteiro estará disponível no <span class="text-red-400 font-semibold">Youtube</span> para você assistir!
+                        </p>
+                    </div>
                 </div>
             </section>
         </div>
