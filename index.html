@@ -21,76 +21,168 @@
                             DEFAULT: '#8ec5fc',
                             dark: '#4facfe',
                             accent: '#ff0844'
+                        },
+                        emotion: {
+                            joy: '#fbbf24',    
+                            sadness: '#60a5fa', 
+                            anger: '#f87171',   
+                            fear: '#c084fc',    
+                            disgust: '#34d399'  
                         }
                     }
                 }
             }
         }
     </script>
+
     <style>
+        /* Fundo base dinâmico e colorido */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31102f 100%);
-            background-attachment: fixed;
+            /* Transição de cores profundas mas vibrantes */
+            background: linear-gradient(-45deg, #1e1b4b, #4c1d95, #1e3a8a, #064e3b, #7f1d1d, #701a75);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
             color: #f8fafc;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
+
+        /* Efeito de brilhos/estrelas no fundo */
+        .sparkles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(255,255,255,0.8) 1px, transparent 2px),
+                radial-gradient(circle at 35% 65%, rgba(255,255,255,0.6) 2px, transparent 3px),
+                radial-gradient(circle at 75% 35%, rgba(255,255,255,0.9) 1px, transparent 2px),
+                radial-gradient(circle at 85% 85%, rgba(255,255,255,0.5) 2px, transparent 3px),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.7) 1px, transparent 2px),
+                radial-gradient(circle at 25% 85%, rgba(255,255,255,0.8) 1.5px, transparent 2px),
+                radial-gradient(circle at 85% 15%, rgba(255,255,255,0.9) 1px, transparent 2px);
+            background-size: 250px 250px;
+            animation: twinkle 5s infinite alternate ease-in-out;
+            opacity: 0.5;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Orbes coloridos flutuantes representando as emoções */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.45;
+            z-index: -2;
+            animation: float 12s infinite ease-in-out alternate;
+        }
+        .orb-joy { background: #fbbf24; width: 45vw; height: 45vw; top: -10%; left: -10%; animation-delay: 0s; }
+        .orb-sadness { background: #60a5fa; width: 40vw; height: 40vw; bottom: 0%; right: -10%; animation-delay: -2s; }
+        .orb-anger { background: #f87171; width: 35vw; height: 35vw; top: 30%; left: 20%; animation-delay: -4s; }
+        .orb-fear { background: #c084fc; width: 40vw; height: 40vw; bottom: -10%; left: -5%; animation-delay: -6s; }
+        .orb-disgust { background: #34d399; width: 35vw; height: 35vw; top: 10%; right: 10%; animation-delay: -8s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 60px) scale(1.1); }
+        }
+
+        /* Cartões de vidro */
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
         }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Utilidades extras */
         .timeline-dot {
             width: 16px;
             height: 16px;
-            background: linear-gradient(to right, #8ec5fc, #e0c3fc);
+            background: linear-gradient(135deg, #f87171, #fbbf24, #34d399, #60a5fa, #c084fc);
             border-radius: 50%;
             position: absolute;
             left: -8px;
             top: 6px;
-            box-shadow: 0 0 10px rgba(142, 197, 252, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+        .gradient-text-rainbow {
+            background: linear-gradient(to right, #fbbf24, #f87171, #c084fc, #60a5fa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .animate-pulse-soft {
-            animation: pulse-soft 3s infinite ease-in-out;
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(239, 68, 68, 0.8); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2.5s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col font-sans selection:bg-brand selection:text-white">
+<body class="antialiased flex flex-col font-sans selection:bg-emotion-joy selection:text-slate-900">
+
+    <!-- Fundo Mágico -->
+    <div class="sparkles"></div>
+    <div class="orb orb-joy"></div>
+    <div class="orb orb-sadness"></div>
+    <div class="orb orb-anger"></div>
+    <div class="orb orb-fear"></div>
+    <div class="orb orb-disgust"></div>
 
     <!-- Cabeçalho -->
     <header class="relative overflow-hidden py-24 sm:py-32">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
         <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
-            <span class="text-brand-light font-semibold tracking-wider uppercase text-sm mb-4 block">O UNIVERSO DO PROJETO QUASAR-MENSA BRASIL 2026</span>
-            <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-brand-light via-brand to-pink-300">
+            <span class="text-white font-bold tracking-wider uppercase text-sm mb-4 block drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                O UNIVERSO DO PROJETO QUASAR-MENSA BRASIL 2026
+            </span>
+            <h1 class="text-5xl md:text-8xl font-serif font-bold mb-6 gradient-text-rainbow drop-shadow-2xl">
                 As Cores do Sentir
             </h1>
-            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl text-slate-100 max-w-2xl mx-auto leading-relaxed drop-shadow-md font-medium">
                 Uma jornada animada através das emoções, construída com paixão, colaboração e muita dedicação.
             </p>
         </div>
     </header>
 
-    <main class="flex-grow max-w-5xl mx-auto px-6 pb-24 w-full grid grid-cols-1 md:grid-cols-12 gap-12">
+    <main class="flex-grow max-w-5xl mx-auto px-6 pb-24 w-full grid grid-cols-1 md:grid-cols-12 gap-12 z-10 relative">
         
         <!-- Coluna Esquerda: Cronologia e Links -->
         <div class="md:col-span-7 space-y-12">
             
-            <section>
-                <div class="flex items-center gap-3 mb-8 border-b border-white/10 pb-4">
-                    <i data-lucide="clock" class="text-brand w-6 h-6"></i>
-                    <h2 class="text-3xl font-serif font-semibold">Nossa História</h2>
+            <section class="glass-card p-8 rounded-3xl">
+                <div class="flex items-center gap-3 mb-8 border-b border-white/20 pb-4">
+                    <i data-lucide="clock" class="text-emotion-joy w-7 h-7 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]"></i>
+                    <h2 class="text-3xl font-serif font-bold text-white">Nossa História</h2>
                 </div>
                 
-                <div class="relative border-l-2 border-white/10 ml-3 pl-8 py-2 space-y-12">
+                <div class="relative border-l-2 border-white/30 ml-3 pl-8 py-2 space-y-12">
                     <!-- Item da Cronologia 1 -->
                     <div class="relative">
                         <div class="timeline-dot"></div>
-                        <span class="text-brand-light font-bold text-sm uppercase tracking-wider">Outubro de 2025</span>
-                        <h3 class="text-xl font-semibold mt-1 mb-2 text-white">O Início de Tudo</h3>
-                        <p class="text-slate-300 leading-relaxed">
+                        <span class="text-emotion-joy font-bold text-sm uppercase tracking-wider drop-shadow-md">Outubro de 2025</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2 text-white">O Início de Tudo</h3>
+                        <p class="text-slate-200 leading-relaxed text-md font-medium">
                             O embrião do <strong>Projeto Quasar</strong> ganhou vida. Foi neste mês que escrevi o primeiro roteiro, dando forma às ideias e sentimentos que dariam origem a "As Cores do Sentir". O que era apenas um pensamento no papel começou a se transformar em um universo tangível.
                         </p>
                     </div>
@@ -98,9 +190,9 @@
                     <!-- Item da Cronologia 2 -->
                     <div class="relative">
                         <div class="timeline-dot"></div>
-                        <span class="text-brand-light font-bold text-sm uppercase tracking-wider">Desenvolvimento & Colaboração</span>
-                        <h3 class="text-xl font-semibold mt-1 mb-2 text-white">Ganhando Vida e Voz</h3>
-                        <p class="text-slate-300 leading-relaxed">
+                        <span class="text-emotion-sadness font-bold text-sm uppercase tracking-wider drop-shadow-md">Desenvolvimento & Colaboração</span>
+                        <h3 class="text-xl font-bold mt-1 mb-2 text-white">Ganhando Vida e Voz</h3>
+                        <p class="text-slate-200 leading-relaxed text-md font-medium">
                             A jornada continuou com o aprofundamento da história. A narrativa foi tomando contornos mais profundos e emocionantes graças à construção conjunta e ao apoio incondicional de pessoas incríveis.
                         </p>
                     </div>
@@ -108,117 +200,101 @@
             </section>
 
             <!-- Link para Personagens -->
-            <section class="pt-4">
-                <a href="personagens.html" class="glass-card p-6 rounded-2xl flex items-center justify-between hover:bg-white/10 transition duration-300 group border-brand/30 bg-brand/5 shadow-lg shadow-brand/5">
+            <section>
+                <a href="personagens.html" class="glass-card p-6 rounded-2xl flex items-center justify-between hover:bg-white/20 transition duration-300 group border-t-4 border-t-emotion-fear shadow-[0_0_20px_rgba(192,132,252,0.2)]">
                     <div class="flex items-center gap-4">
-                        <div class="bg-brand-light/20 p-3 rounded-lg text-brand-light group-hover:scale-110 transition duration-300">
-                            <i data-lucide="users"></i>
+                        <div class="bg-white/10 p-4 rounded-xl text-emotion-fear group-hover:scale-110 transition duration-300 shadow-[0_0_10px_rgba(192,132,252,0.3)]">
+                            <i data-lucide="users" class="w-6 h-6"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">Conheça os Personagens</h3>
-                            <p class="text-slate-400 text-sm mt-1">Descubra as emoções e os rostos que dão vida a esta história.</p>
+                            <h3 class="text-2xl font-bold text-white">Conheça os Personagens</h3>
+                            <p class="text-slate-200 font-medium mt-1">Descubra as emoções e os rostos que dão vida a esta história.</p>
                         </div>
                     </div>
-                    <i data-lucide="arrow-right" class="text-brand-light group-hover:translate-x-1 transition duration-300"></i>
+                    <i data-lucide="arrow-right" class="text-white group-hover:translate-x-2 transition duration-300 w-6 h-6"></i>
                 </a>
             </section>
 
             <!-- Seção de Links/Arquivos -->
-            <section class="pt-8">
-                <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-                    <i data-lucide="folder-heart" class="text-pink-400 w-6 h-6"></i>
-                    <h2 class="text-3xl font-serif font-semibold">Acervo da Obra</h2>
+            <section class="glass-card p-8 rounded-3xl">
+                <div class="flex items-center gap-3 mb-8 border-b border-white/20 pb-4">
+                    <i data-lucide="film" class="text-emotion-sadness w-7 h-7 drop-shadow-[0_0_8px_rgba(96,165,250,0.8)]"></i>
+                    <h2 class="text-3xl font-serif font-bold text-white">Acervo da Obra</h2>
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Roteiro -->
-                    <a href="./roteiro.pdf" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
-                        <div class="bg-red-500/20 p-3 rounded-lg text-red-400 group-hover:scale-110 transition duration-300">
+                    <a href="./roteiro.pdf" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/20 transition duration-300 group border-l-4 border-l-white">
+                        <div class="bg-white/20 p-3 rounded-lg text-white group-hover:scale-110 transition duration-300">
                             <i data-lucide="file-text"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-white">Roteiro Original</h3>
-                            <span class="text-sm text-slate-400">roteiro.pdf</span>
+                            <h3 class="font-bold text-white">Roteiro Original</h3>
+                            <span class="text-sm text-slate-300 font-medium">roteiro.pdf</span>
                         </div>
                     </a>
 
-                    <!-- Storyboard 1 (Loom) -->
-                    <a href="https://www.loom.com/share/8a62145f615c44ba92badde4378d9d36" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
-                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                    <!-- Storyboard 1 -->
+                    <a href="https://www.loom.com/share/8a62145f615c44ba92badde4378d9d36" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/20 transition duration-300 group border-l-4 border-l-emotion-disgust">
+                        <div class="bg-white/20 p-3 rounded-lg text-emotion-disgust group-hover:scale-110 transition duration-300">
                             <i data-lucide="video"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-white">Storyboard - Filme 1</h3>
-                            <span class="text-sm text-slate-400">Ver no Loom</span>
+                            <h3 class="font-bold text-white">Storyboard - Filme 1</h3>
+                            <span class="text-sm text-slate-300 font-medium">Ver no Loom</span>
                         </div>
                     </a>
 
-                    <!-- Storyboard 2 (Loom) -->
-                    <a href="https://www.loom.com/share/4fb10dc809bd4cdcae85be914597e4dc" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
-                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                    <!-- Storyboard 2 -->
+                    <a href="https://www.loom.com/share/4fb10dc809bd4cdcae85be914597e4dc" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/20 transition duration-300 group border-l-4 border-l-emotion-sadness">
+                        <div class="bg-white/20 p-3 rounded-lg text-emotion-sadness group-hover:scale-110 transition duration-300">
                             <i data-lucide="video"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-white">Storyboard - Filme 2</h3>
-                            <span class="text-sm text-slate-400">Ver no Loom</span>
+                            <h3 class="font-bold text-white">Storyboard - Filme 2</h3>
+                            <span class="text-sm text-slate-300 font-medium">Ver no Loom</span>
                         </div>
                     </a>
 
-                    <!-- Storyboard 3 (Loom) -->
-                    <a href="https://www.loom.com/share/cbff28ca80c148f282335b192692fbed" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
-                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                    <!-- Storyboard 3 -->
+                    <a href="https://www.loom.com/share/cbff28ca80c148f282335b192692fbed" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/20 transition duration-300 group border-l-4 border-l-emotion-joy">
+                        <div class="bg-white/20 p-3 rounded-lg text-emotion-joy group-hover:scale-110 transition duration-300">
                             <i data-lucide="video"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-white">Storyboard - Filme 3</h3>
-                            <span class="text-sm text-slate-400">Ver no Loom</span>
+                            <h3 class="font-bold text-white">Storyboard - Filme 3</h3>
+                            <span class="text-sm text-slate-300 font-medium">Ver no Loom</span>
                         </div>
                     </a>
 
-                    <!-- Storyboard 4 (Loom) -->
-                    <a href="https://www.loom.com/share/f086690ee58e4c2e84c0cac7f65f19e9" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group">
-                        <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400 group-hover:scale-110 transition duration-300">
+                    <!-- Storyboard 4 -->
+                    <a href="https://www.loom.com/share/f086690ee58e4c2e84c0cac7f65f19e9" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/20 transition duration-300 group border-l-4 border-l-emotion-anger">
+                        <div class="bg-white/20 p-3 rounded-lg text-emotion-anger group-hover:scale-110 transition duration-300">
                             <i data-lucide="video"></i>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-white">Storyboard - Filme 4</h3>
-                            <span class="text-sm text-slate-400">Ver no Loom</span>
-                        </div>
-                    </a>
-
-                    <!-- Ato 1 Completo (YouTube) -->
-                    <a href="https://youtu.be/Hvme7R2hJ1I?si=xdmI7odRZY-5caxO" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group border-brand/40 bg-brand/10 shadow-lg shadow-brand/5">
-                        <div class="bg-red-600/20 p-3 rounded-lg text-red-500 group-hover:scale-110 transition duration-300">
-                            <i data-lucide="youtube"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-brand-light">Assista ao Ato 1</h3>
-                            <span class="text-sm text-slate-400">Ver no YouTube</span>
-                        </div>
-                    </a>
-
-                    <!-- Ato 2 Completo (YouTube) -->
-                    <a href="https://youtu.be/KKz87Fi7Gek?si=cNyVMvYcz-Pe1os1" target="_blank" class="glass-card p-4 rounded-xl flex items-center gap-4 hover:bg-white/10 transition duration-300 group border-brand/40 bg-brand/10 shadow-lg shadow-brand/5">
-                        <div class="bg-red-600/20 p-3 rounded-lg text-red-500 group-hover:scale-110 transition duration-300">
-                            <i data-lucide="youtube"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-brand-light">Assista ao Ato 2</h3>
-                            <span class="text-sm text-slate-400">Ver no YouTube</span>
+                            <h3 class="font-bold text-white">Storyboard - Filme 4</h3>
+                            <span class="text-sm text-slate-300 font-medium">Ver no Loom</span>
                         </div>
                     </a>
                 </div>
 
-                <!-- Aviso Breve Lançamento -->
-                <div class="mt-8 p-6 glass-card rounded-2xl border-brand-light/20 flex flex-col items-center text-center space-y-3 animate-pulse-soft">
-                    <div class="bg-brand-light/10 p-2 rounded-full">
-                        <i data-lucide="sparkles" class="text-brand-light w-6 h-6"></i>
+                <!-- AVISO FILME COMPLETO -->
+                <div class="mt-10 p-8 glass-card rounded-2xl border-t-4 border-red-500 flex flex-col items-center text-center space-y-5 shadow-[0_0_40px_rgba(239,68,68,0.3)] bg-gradient-to-b from-white/10 to-transparent">
+                    <div class="bg-gradient-to-br from-red-500 to-pink-600 p-5 rounded-full shadow-lg animate-pulse-glow">
+                        <i data-lucide="youtube" class="text-white w-10 h-10"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-white uppercase tracking-widest text-sm">Aguarde!</h4>
-                        <p class="text-slate-300 text-sm mt-1">
-                            Em breve, o filme inteiro estará disponível no <span class="text-red-400 font-semibold">Youtube</span> para você assistir!
+                        <h4 class="text-2xl md:text-3xl font-black text-white uppercase tracking-widest mb-3 drop-shadow-md">
+                            O filme completo está disponível!
+                        </h4>
+                        <p class="text-slate-100 text-lg font-medium mb-6 max-w-lg mx-auto">
+                            Assista agora no YouTube, dos <strong class="text-white">Atos 1 ao 5!</strong> Acesse o link abaixo e embarque nesta jornada.
                         </p>
+                        <a href="https://www.youtube.com/channel/UC-POnSpNeRq4i-w8rZ2vrIA" target="_blank" class="inline-flex items-center gap-3 bg-white text-red-600 hover:bg-red-50 hover:text-red-700 font-extrabold text-lg py-4 px-10 rounded-full transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transform hover:-translate-y-1">
+                            <i data-lucide="play-circle" class="w-6 h-6"></i>
+                            Acessar o Canal
+                        </a>
                     </div>
                 </div>
             </section>
@@ -227,59 +303,60 @@
         <!-- Coluna Direita: Créditos e Gratidão -->
         <div class="md:col-span-5 space-y-6">
             
-            <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
-                <i data-lucide="heart-handshake" class="text-rose-400 w-6 h-6"></i>
-                <h2 class="text-3xl font-serif font-semibold">Gratidão</h2>
-            </div>
+            <div class="glass-card p-8 rounded-3xl">
+                <div class="flex items-center gap-3 mb-8 border-b border-white/20 pb-4">
+                    <i data-lucide="heart-handshake" class="text-emotion-disgust w-7 h-7 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]"></i>
+                    <h2 class="text-3xl font-serif font-bold text-white">Gratidão</h2>
+                </div>
 
-            <!-- Eduardo -->
-            <div class="glass-card rounded-2xl p-6 relative overflow-hidden group border-amber-500/30">
-                <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent"></div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-3 mb-3">
-                        <i data-lucide="star" class="text-amber-400 w-5 h-5 fill-amber-400"></i>
-                        <h3 class="text-lg font-bold text-amber-100">Agradecimento Especial</h3>
+                <!-- Eduardo -->
+                <div class="glass-card rounded-2xl p-6 relative overflow-hidden group border-l-4 border-l-emotion-joy mb-8 shadow-[0_0_20px_rgba(251,191,36,0.15)]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emotion-joy/20 to-transparent"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="star" class="text-emotion-joy w-6 h-6 fill-emotion-joy drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"></i>
+                            <h3 class="text-xl font-black text-white uppercase tracking-wider">Agradecimento Especial</h3>
+                        </div>
+                        <p class="text-white font-serif text-2xl mb-2 font-bold">Eduardo</p>
+                        <p class="text-md text-slate-100 font-medium leading-relaxed">
+                            Meu MUITO OBRIGADO ao Eduardo, que me ajudou de forma imensurável e continua me orientando magistralmente em toda a parte de animação.
+                        </p>
                     </div>
-                    <p class="text-white font-serif text-xl mb-2">Eduardo</p>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Meu MUITO OBRIGADO ao Eduardo, que me ajudou de forma imensurável e continua me orientando magistralmente em toda a parte de animação.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Créditos Gerais -->
-            <div class="glass-card rounded-2xl p-6 space-y-6">
-                
-                <div>
-                    <h3 class="text-brand-light font-semibold mb-1 text-sm uppercase tracking-wider">Voz e Emoção</h3>
-                    <p class="text-lg font-medium">Luana Nunes</p>
-                    <p class="text-sm text-slate-400">Dublagem brilhante.</p>
                 </div>
 
-                <div>
-                    <h3 class="text-brand-light font-semibold mb-1 text-sm uppercase tracking-wider">Apoio Psicológico</h3>
-                    <p class="text-lg font-medium">Ivana Rebello</p>
-                    <p class="text-sm text-slate-400">Pela consultoria na parte psicológica.</p>
-                </div>
+                <!-- Créditos Gerais -->
+                <div class="space-y-6">
+                    <div class="border-l-4 border-emotion-sadness pl-5">
+                        <h3 class="text-emotion-sadness font-bold mb-1 text-sm uppercase tracking-wider">Voz e Emoção</h3>
+                        <p class="text-xl font-bold text-white">Luana Nunes</p>
+                        <p class="text-md text-slate-200 font-medium">Dublagem brilhante.</p>
+                    </div>
 
-                <div>
-                    <h3 class="text-brand-light font-semibold mb-1 text-sm uppercase tracking-wider">Mentoria</h3>
-                    <p class="text-lg font-medium">Cláudia Aguiar</p>
-                    <p class="text-sm text-slate-400">Por me guiar em cada passo.</p>
-                </div>
+                    <div class="border-l-4 border-emotion-disgust pl-5">
+                        <h3 class="text-emotion-disgust font-bold mb-1 text-sm uppercase tracking-wider">Apoio Psicológico</h3>
+                        <p class="text-xl font-bold text-white">Ivana Rebello</p>
+                        <p class="text-md text-slate-200 font-medium">Pela consultoria na parte psicológica.</p>
+                    </div>
 
-                <div class="pt-4 border-t border-white/10">
-                    <h3 class="text-brand-light font-semibold mb-3 text-sm uppercase tracking-wider">Base Afetiva</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Todo o meu amor e gratidão à minha <strong>mãe</strong>, meu <strong>pai</strong>, minha <strong>psicóloga</strong>, meus <strong>irmãos</strong> e meus <strong>amigos</strong>.
-                    </p>
+                    <div class="border-l-4 border-emotion-fear pl-5">
+                        <h3 class="text-emotion-fear font-bold mb-1 text-sm uppercase tracking-wider">Mentoria</h3>
+                        <p class="text-xl font-bold text-white">Cláudia Aguiar</p>
+                        <p class="text-md text-slate-200 font-medium">Por me guiar em cada passo.</p>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/20 mt-8">
+                        <h3 class="text-emotion-anger font-bold mb-3 text-sm uppercase tracking-wider">Base Afetiva</h3>
+                        <p class="text-md text-slate-100 font-medium leading-relaxed">
+                            Todo o meu amor e gratidão à minha <strong>mãe</strong>, meu <strong>pai</strong>, minha <strong>psicóloga</strong>, meus <strong>irmãos</strong> e meus <strong>amigos</strong>.
+                        </p>
+                    </div>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm mt-auto">
+    <footer class="border-t border-white/20 py-8 text-center text-slate-300 font-medium text-sm mt-auto z-10 relative bg-black/20 backdrop-blur-sm">
         <p>© 2026 As Cores do Sentir - Projeto Quasar Mensa Brasil.</p>
     </footer>
 
